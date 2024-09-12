@@ -24,16 +24,25 @@
             </div>
             <div class="px-6 pt-4 pb-2">
                 <h1>Songs</h1>
+                <br>
                 <table class="w-full table-auto">
                     <tbody>
                         @foreach($playlist->songs as $song)
                             <tr>
-                                <td class="border px-4 py-2">{{ $song->title }} | {{ $song->artist }}</td>
+                                <td class="border px-4 py-2">{{ $song->title }} | {{ $song->artist }}
+                                    <form action="{{ route('playlist.removesong', $playlist->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                            <input type="hidden" name="song" value="{{ $song->id }}">
+                                                <button type="submit" class="  bg-purple-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
+                 <br>
                 <form action="{{ route('playlist.addsong', $playlist->id) }}" method="POST" class="inline-block">
                     @csrf
                     <label for="song">Choose a song:</label>
@@ -41,7 +50,12 @@
                         @foreach($allSongs as $song)
                             <option value="{{ $song->id }}">{{ $song->title }}</option>
                         @endforeach
+                        
                     </select>
+                    <br>
+                    <br>
+                   
+                    
                     <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         Add
                     </button>
