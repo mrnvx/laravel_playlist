@@ -92,7 +92,7 @@
                                 <td class="border px-4 py-2">{{$song->title}}</td>
                                 <td class="border px-4 py-2">{{$song->artist}}</td>
                                 <td class="border px-4 py-2">{{$song->genre}}</td>
-                            </tr>
+                            </tr>                       
                         @endforeach
                     </tbody>
                 </table>
